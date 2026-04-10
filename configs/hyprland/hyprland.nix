@@ -13,7 +13,12 @@
       monitor = [
         ",preferred,auto,1"
       ];
-
+      windowrule = [
+        "match:class ^(code|antigravity|kitty|neovide)$, workspace 1"
+        "match:class ^(firefox)$, workspace 2"
+        "match:class ^(Slack)$, workspace 3"
+        "match:class ^(org.telegram.desktop)$, workspace 3"
+      ];
       ###################
       ### MY PROGRAMS ###
       ###################
@@ -29,6 +34,7 @@
       # Use exec-once in a list
       "exec-once" = [
         # "nm-applet &"
+        "swaync"
         "waybar & hyprpaper"
         "hyprctl setcursor Adwaita 13"
       ];
@@ -60,6 +66,7 @@
         rounding_power = 2;
         active_opacity = 1.0;
         inactive_opacity = 1.0;
+        # blurls = [ "swaync" ];
 
         shadow = {
           enabled = true;
@@ -151,9 +158,10 @@
         "$mainMod, M, fullscreen, 1"
         "$mainMod, E, exec, $fileManager"
         "$mainMod, V, togglefloating,"
-        "$mainMod, R, exec, $menu -show drun"
+        "$mainMod, D, exec, ~/.config/hypr/scripts/launcher.sh"
         "$mainMod, P, pseudo,"
         "$mainMod, B, exec, firefox"
+        "$mainMod, W, exec, ~/.config/hypr/scripts/rofi-wifi.sh"
         # Screenshot
         "bind = $mainMod SHIFT, S, exec, hyprshot -m region"
         "bind = $mainMod, S, exec, hyprshot -m window"
@@ -218,5 +226,9 @@
         ", XF86AudioPrev, exec, playerctl previous"
       ];
     };
+  };
+  xdg.configFile."hypr/scripts" = {
+    source = ./scripts; 
+    recursive = true;
   };
 }

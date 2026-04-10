@@ -14,7 +14,7 @@
         exclusive = true;
         passthrough = false;
         gtk-layer-shell = true;
-        height = 50;
+        height = 35;
 
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "hyprland/window" ];
@@ -24,26 +24,35 @@
           "custom/notification"
           "pulseaudio#microphone"
           "battery"
+          "clock"
         ];
 
         "hyprland/workspaces" = {
           format = "{icon}";
           on-scroll-up = "hyprctl dispatch workspace e+1";
           on-scroll-down = "hyprctl dispatch workspace e-1";
-          format-icons = {
-            "1" = "😎";
-            "2" = "🌐";
-            "3" = "👩🏽‍💻";
-            "4" = "📒";
-            "5" = "🎵";
-          };
           persistent_workspaces = {
-            "*" = 1;
+            "*" = 4;
           };
         };
 
         "hyprland/window" = {
-          format = "{}";
+          # {initialTitle} usually contains the app name (e.g., "Firefox") 
+          # rather than the full tab title.
+          format = "{initialTitle}";
+          
+          # This section cleans up specific apps that might still be messy
+          rewrite = {
+            "(.*) — Mozilla Firefox" = "Firefox";
+            "(.*) - Visual Studio Code" = "VS Code";
+            "(.*) - Discord" = "Discord";
+            "kitty" = "Kitty";
+            "Google Antigravity" = "Antigravity"; # Targeted for your specific setup
+          };
+
+          # Optional: Prevents the bar from jumping around if an app has a long name
+          max-length = 50;
+          separate-outputs = true;
         };
 
         "custom/notification" = {

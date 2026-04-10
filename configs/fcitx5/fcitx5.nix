@@ -10,4 +10,9 @@
     type = "fcitx5";
     fcitx5.addons = with pkgs;[ qt6Packages.fcitx5-unikey ];
   };
+
+  xdg.configFile."fcitx5" = {
+    source = ./fcitx5;
+    recursive = true;
+  };
 }

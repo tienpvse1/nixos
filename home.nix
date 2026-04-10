@@ -7,11 +7,12 @@
 {
   home.enableNixpkgsReleaseCheck = false;
   imports = [
-    ./configs/i18n.nix
+    ./configs/fcitx5/fcitx5.nix
     ./configs/waybar/waybar.nix
     ./configs/hyprland/hyprland.nix
     ./configs/nvim/nvim.nix
     ./configs/swaync/swaync.nix
+    ./configs/rofi/rofi.nix
   ];
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1w"
@@ -31,7 +32,6 @@
     };
   };
   programs = {
-    rofi.enable = true;
     bun.enable = true;
     awscli = {
       enable = true;
@@ -115,6 +115,8 @@
       ripgrep
       fd
       openssl
+      telegram-desktop
+      libnotify
     ];
     stateVersion = "25.11";
   };

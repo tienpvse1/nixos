@@ -74,7 +74,11 @@ networking.extraHosts =
     home-manager
     nh
     postman
+    vscode
     beekeeper-studio
+    opencv 
+    go
+    pkg-config
   ];
   fonts.packages = with pkgs; [ nerd-fonts.fira-code ];
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [

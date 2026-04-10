@@ -5,7 +5,7 @@
           border-radius: 0;
           font-family: "FiraCode Nerd Font", "Font Awesome 6 Free", Helvetica, Arial, sans-serif;
           font-weight: bold;
-          font-size: 16px;
+          font-size: 14px;
           min-height: 0;
       }
 
@@ -23,9 +23,12 @@
       }
 
       #workspaces button {
-          padding: 5px;
+          padding: 0px 10px;
           color: #636777;
-          margin-right: 5px;
+          margin-right: 0px;
+          margin-left: 0px;
+          border-radius: 10px;
+
       }
 
       #workspaces button.active {
@@ -70,7 +73,7 @@
           padding: 0px 10px;
           /* margin: 3px 0px; */
           margin: 0px 0px;
-          margin-top: 10px;
+          margin-top: 3px;
           border: 1px solid #181825;
       }
 
@@ -100,7 +103,7 @@
           border-radius: 10px;
           margin-left: 10px;
           padding-right: 0px;
-          padding-left: 5px;
+          padding-left: 0px;
       }
 
       #custom-power_profile {
@@ -151,7 +154,7 @@
 
       #battery {
           color: #a6e3a1;
-          border-radius: 0 10px 10px 0;
+          border-radius: 10px;
           margin-right: 10px;
           border-left: 0px;
       }
@@ -166,5 +169,12 @@
           border-right: 0px;
           margin-left: 0px;
       }
+      #window.empty {
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        min-width: 0;
+    }
   '';
 }

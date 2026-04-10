@@ -1,41 +1,55 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
+
 {
-  imports = [ ./swaync-style.nix ];
+  imports = [
+    ./swaync-style.nix
+  ];
   services.swaync = {
     enable = true;
     settings = {
+      "$schema" = "/etc/xdg/swaync/configSchema.json";
+      ignore-gtk-theme = true;
       positionX = "right";
       positionY = "top";
+      layer = "overlay";
+      control-center-layer = "top";
+      layer-shell = true;
+      layer-shell-cover-screen = false;
       cssPriority = "user";
-
-      control-center-width = 380;
-      control-center-height = 860;
-      control-center-margin-top = 2;
-      control-center-margin-bottom = 2;
-      control-center-margin-right = 1;
+      control-center-margin-top = 0;
+      control-center-margin-bottom = 200;
+      control-center-margin-right = 0;
       control-center-margin-left = 0;
-
-      notification-window-width = 400;
-      notification-icon-size = 48;
-      notification-body-image-height = 0;
-      notification-body-image-width = 0;
-
-      timeout = 4;
-      timeout-low = 2;
-      timeout-critical = 6;
-
-      fit-to-screen = false;
+      notification-2fa-action = true;
+      notification-inline-replies = false;
+      notification-body-image-height = 100;
+      notification-body-image-width = 200;
+      timeout = 10;
+      timeout-low = 5;
+      timeout-critical = 5;
+      fit-to-screen = true;
+      relative-timestamps = true;
+      control-center-width = 400;
+      control-center-height = 600;
+      notification-window-width = 370;
       keyboard-shortcuts = true;
+      notification-grouping = true;
       image-visibility = "when-available";
-      transition-time = 100;
+      transition-time = 0;
       hide-on-clear = false;
-      hide-on-action = false;
+      hide-on-action = true;
+      text-empty = "No Notifications";
       script-fail-notify = true;
 
       scripts = {
         example-script = {
           exec = "echo 'Do something...'";
           urgency = "Normal";
+        };
+        example-action-script = {
+          exec = "echo 'Do something actionable!'";
+          urgency = "Normal";
+          run-on = "action";
         };
       };
 
@@ -48,81 +62,101 @@
       };
 
       widgets = [
-        "mpris"
+        "dnd"
         "buttons-grid"
         "volume"
         "backlight"
-        "dnd"
+        "inhibitors"
         "title"
         "notifications"
       ];
 
       widget-config = {
+        notifications = {
+          vexpand = true;
+        };
+        inhibitors = {
+          text = "Inhibitors";
+          button-text = "Clear All";
+          clear-all-button = true;
+        };
         title = {
           text = "Notifications";
           clear-all-button = true;
-          button-text = "Clear All ";
+          button-text = "Clear All";
         };
         dnd = {
-          text = "Do not disturb";
-          do-not-disturb-on-startup = false;
+          text = "Do Not Disturb";
         };
         label = {
-          max-lines = 1;
-          text = " ";
+          max-lines = 5;
+          text = "Label Text";
         };
         mpris = {
-          image-size = 96;
-          image-radius = 19;
-          show-album-art = "playing";
-          blacklist = [ "firefox" "chromium" "brave" "mpv" "playerctl" ];
-          autohide = true;
-          prefer = [ "spotify" ];
+          blacklist = [ ];
+          autohide = false;
+          show-album-art = "always";
+          loop-carousel = false;
         };
         volume = {
-          label = "󰕾 ";
-          show-per-app = false;
+          label = "󰕾";
+          show-per-app-icon = true;
+          show-per-app = true;
         };
         backlight = {
-          label = "󰃠 ";
-          device = "amdgpu_bl1"; # Note: Changed from intel to amdgpu per your JSON
+          label = "󰃠";
+          device = "intel_backlight";
           subsystem = "backlight";
-          min = 10;
+          min = 5;
         };
         buttons-grid = {
+          buttons-per-row = 4;
           actions = [
             {
-              label = "";
-              command = "amixer set Master toggle";
-              name = "btn-audio";
+              label = "󰍁";
+              type = "command";
+              command = "hyprlock";
             }
             {
-              label = "";
-              command = "amixer set Capture toggle";
+              label = "󰗼";
+              type = "command";
+              command = "hyprctl dispatch exit";
             }
             {
-              label = " ";
-              command = "swaync-client -t -sw; ~/.config/rofi/launchers/wifi.sh";
+              label = "󰜉";
+              type = "command";
+              command = "systemctl reboot";
+            }
+            {
+              label = "󰐥";
+              type = "command";
+              command = "systemctl poweroff";
+            }
+            {
+              label = "󰤥";
+              type = "toggle";
+              active = true;
+              command = "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && nmcli radio wifi on || nmcli radio wifi off'";
+              update-command = "sh -c '[[ $(nmcli radio wifi) == \"enabled\" ]] && echo true || echo false'";
             }
             {
               label = "󰂯";
-              command = "swaync-client -t -sw; ~/.config/rofi/launchers/rofi-bluetooth";
+              type = "toggle";
+              active = true;
+              command = "sh -c 'if [ \"$SWAYNC_TOGGLE_STATE\" = \"true\" ]; then bluetoothctl power on; else bluetoothctl power off; fi'";
+              update-command = "bluetoothctl show | grep -q 'Powered: yes' && echo true || echo false";
             }
             {
-              label = "󰏘";
-              command = "hyprpicker";
+              label = "";
+              type = "toggle";
+              command = "if [ \"$SWAYNC_TOGGLE_STATE\" = \"true\" ]; then hyprctl dispatch exec 'hyprsunset --temperature 6000'; else pkill -INT hyprsunset; fi";
+              update-command = "pgrep -x hyprsunset >/dev/null && echo true || echo false";
             }
             {
-              label = "󰋩";
-              command = "swaync-client -t -sw; ~/.config/rofi/launchers/wall-changer.sh";
-            }
-            {
-              label = " ";
-              command = "swaync-client -t -sw; ~/.config/rofi/launchers/screenshot.sh";
-            }
-            {
-              label = "";
-              command = "swaync-client -t -sw; ~/.config/rofi/launchers/powermenu.sh";
+              label = "";
+              type = "toggle";
+              command = "if [ \"$SWAYNC_TOGGLE_STATE\" = \"true\" ]; then hyprctl dispatch exec hypridle; else pkill -TERM hypridle; fi";
+              update-command = "pgrep -x hypridle >/dev/null && echo true || echo false";
             }
           ];
         };
