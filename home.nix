@@ -83,6 +83,7 @@
       gcc
       ripgrep
       fd
+      postman
     ];
     stateVersion = "25.11";
   };

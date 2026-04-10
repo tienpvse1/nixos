@@ -4,6 +4,10 @@
     [ 
       /etc/nixos/hardware-configuration.nix 
     ];
+    virtualisation.docker = {
+  enable = true;
+};
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -49,7 +53,7 @@
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "tienpvse";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
     ];
   };
@@ -63,8 +67,21 @@
     slack
     home-manager
     nh
+    postman
+    beekeeper-studio
   ];
   fonts.packages = with pkgs; [ nerd-fonts.fira-code ];
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "1password-cli"
+    "1password-gui"
+    "1password"
+  ];
+
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ "tienpvse" ];
+  };
 
   system.stateVersion = "25.11";
 
