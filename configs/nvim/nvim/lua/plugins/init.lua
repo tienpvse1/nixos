@@ -98,7 +98,7 @@ return {
 					},
 				},
 				nes = {
-					enabled = true,
+					enabled = false,
 					keymap = {
 						accept_and_goto = "<leader>p",
 						accept = false,

@@ -11,11 +11,11 @@
     ./configs/waybar/waybar.nix
     ./configs/hyprland/hyprland.nix
     ./configs/nvim/nvim.nix
+    ./configs/swaync/swaync.nix
   ];
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1w"
   ];
-  services.swaync.enable = true;
   services.hyprpaper = {
     enable = true;
     settings = {
