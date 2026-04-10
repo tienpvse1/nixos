@@ -1,7 +1,132 @@
-{ pkgs, ...} : { 
-  services.swaync.enable = true;
-  xdg.configFile."swaync" = {
-    source = ./swaync;
-    recursive = true;
+{ pkgs, ... }:
+{
+  imports = [ ./swaync-style.nix ];
+  services.swaync = {
+    enable = true;
+    settings = {
+      positionX = "right";
+      positionY = "top";
+      cssPriority = "user";
+
+      control-center-width = 380;
+      control-center-height = 860;
+      control-center-margin-top = 2;
+      control-center-margin-bottom = 2;
+      control-center-margin-right = 1;
+      control-center-margin-left = 0;
+
+      notification-window-width = 400;
+      notification-icon-size = 48;
+      notification-body-image-height = 0;
+      notification-body-image-width = 0;
+
+      timeout = 4;
+      timeout-low = 2;
+      timeout-critical = 6;
+
+      fit-to-screen = false;
+      keyboard-shortcuts = true;
+      image-visibility = "when-available";
+      transition-time = 100;
+      hide-on-clear = false;
+      hide-on-action = false;
+      script-fail-notify = true;
+
+      scripts = {
+        example-script = {
+          exec = "echo 'Do something...'";
+          urgency = "Normal";
+        };
+      };
+
+      notification-visibility = {
+        example-name = {
+          state = "muted";
+          urgency = "Low";
+          app-name = "Spotify";
+        };
+      };
+
+      widgets = [
+        "mpris"
+        "buttons-grid"
+        "volume"
+        "backlight"
+        "dnd"
+        "title"
+        "notifications"
+      ];
+
+      widget-config = {
+        title = {
+          text = "Notifications";
+          clear-all-button = true;
+          button-text = "Clear All ";
+        };
+        dnd = {
+          text = "Do not disturb";
+          do-not-disturb-on-startup = false;
+        };
+        label = {
+          max-lines = 1;
+          text = " ";
+        };
+        mpris = {
+          image-size = 96;
+          image-radius = 19;
+          show-album-art = "playing";
+          blacklist = [ "firefox" "chromium" "brave" "mpv" "playerctl" ];
+          autohide = true;
+          prefer = [ "spotify" ];
+        };
+        volume = {
+          label = "󰕾 ";
+          show-per-app = false;
+        };
+        backlight = {
+          label = "󰃠 ";
+          device = "amdgpu_bl1"; # Note: Changed from intel to amdgpu per your JSON
+          subsystem = "backlight";
+          min = 10;
+        };
+        buttons-grid = {
+          actions = [
+            {
+              label = "";
+              command = "amixer set Master toggle";
+              name = "btn-audio";
+            }
+            {
+              label = "";
+              command = "amixer set Capture toggle";
+            }
+            {
+              label = " ";
+              command = "swaync-client -t -sw; ~/.config/rofi/launchers/wifi.sh";
+            }
+            {
+              label = "󰂯";
+              command = "swaync-client -t -sw; ~/.config/rofi/launchers/rofi-bluetooth";
+            }
+            {
+              label = "󰏘";
+              command = "hyprpicker";
+            }
+            {
+              label = "󰋩";
+              command = "swaync-client -t -sw; ~/.config/rofi/launchers/wall-changer.sh";
+            }
+            {
+              label = " ";
+              command = "swaync-client -t -sw; ~/.config/rofi/launchers/screenshot.sh";
+            }
+            {
+              label = "";
+              command = "swaync-client -t -sw; ~/.config/rofi/launchers/powermenu.sh";
+            }
+          ];
+        };
+      };
+    };
   };
 }

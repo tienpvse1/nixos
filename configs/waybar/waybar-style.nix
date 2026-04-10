@@ -60,7 +60,7 @@
       #pulseaudio,
       #network,
       #bluetooth,
-      #custom-temperature,
+      #custom-notification,
       #custom-memory,
       #workspaces,
       #tray,
@@ -78,11 +78,11 @@
           color: #eba0ac;
       }
 
-      #custom-temperature {
+      #custom-notification {
           border-radius: 10px 0px 0px 10px;
       }
 
-      #custom-temperature.critical {
+      #custom-notification.critical {
           color: #f00;
       }
 

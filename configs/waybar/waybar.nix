@@ -21,14 +21,9 @@
         modules-right = [
           "network"
           "bluetooth"
-          "custom/temperature"
-          "custom/memory"
-          "battery"
-          "backlight"
-          "pulseaudio"
+          "custom/notification"
           "pulseaudio#microphone"
-          "tray"
-          "clock"
+          "battery"
         ];
 
         "hyprland/workspaces" = {
@@ -51,19 +46,25 @@
           format = "{}";
         };
 
-        "custom/weather" = {
-          tooltip = true;
-          format = "{}";
-          interval = 3600;
-          exec = "~/.config/waybar/scripts/waybar-wttr.py";
-          return-type = "json";
-        };
-
-        "custom/temperature" = {
-          tooltip = true;
-          format = " {}";
-          interval = 30;
-          exec = "cpu";
+        "custom/notification" = {
+          tooltip = false;
+          format = "{} {icon}";
+          "format-icons" = {
+            notification = "󱅫";
+            none = "";
+            "dnd-notification" = " ";
+            "dnd-none" = "󰂛";
+            "inhibited-notification" = " ";
+            "inhibited-none" = "";
+            "dnd-inhibited-notification" = " ";
+            "dnd-inhibited-none" = " ";
+          };
+          "return-type" = "json";
+          "exec-if" = "which swaync-client";
+          exec = "swaync-client -swb";
+          "on-click" = "sleep 0.1 && swaync-client -t -sw";
+          "on-click-right" = "sleep 0.1 && swaync-client -d -sw";
+          escape = true;
         };
 
         "custom/memory" = {
