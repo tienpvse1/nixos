@@ -7,6 +7,12 @@
     virtualisation.docker = {
   enable = true;
 };
+networking.extraHosts =
+  ''
+  10.32.100.72 api.lisbon-alteos.com
+  127.0.0.1 local.dev.dash.amili.asia
+  127.0.0.1 local.app.sandbox.amili.asia
+  '';
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   boot.loader.systemd-boot.enable = true;
