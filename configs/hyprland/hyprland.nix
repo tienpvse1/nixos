@@ -3,26 +3,18 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    # Optional: use the same package as your system or a specific version
-    # package = pkgs.hyprland;
 
     settings = {
-      ################
-      ### MONITORS ###
-      ################
       monitor = [
         ",preferred,auto,1"
       ];
       windowrule = [
         "match:class ^(code|antigravity|kitty|neovide)$, workspace 1"
-        "match:class ^(firefox)$, workspace 2"
+        "match:class ^(firefox|zen-beta)$, workspace 2"
         "match:class ^(Slack)$, workspace 3"
         "match:class ^(org.telegram.desktop)$, workspace 3"
       ];
-      ###################
-      ### MY PROGRAMS ###
-      ###################
-      # Defining variables for use in binds
+
       "$terminal" = "kitty";
       "$fileManager" = "nautilus";
       "$menu" = "rofi";
@@ -39,17 +31,11 @@
         "hyprctl setcursor Adwaita 13"
       ];
 
-      #############################
-      ### ENVIRONMENT VARIABLES ###
-      #############################
       env = [
         "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE,24"
       ];
 
-      #####################
-      ### LOOK AND FEEL ###
-      #####################
       general = {
         gaps_in = 2;
         gaps_out = 5;
@@ -163,7 +149,7 @@
         "$mainMod, V, togglefloating,"
         "$mainMod, D, exec, ~/.config/hypr/scripts/launcher.sh"
         "$mainMod, P, pseudo,"
-        "$mainMod, B, exec, firefox"
+        "$mainMod, B, exec, zen-beta"
         "$mainMod, W, exec, ~/.config/hypr/scripts/rofi-wifi.sh"
         # Screenshot
         "bind = $mainMod SHIFT, S, exec, hyprshot -m region"

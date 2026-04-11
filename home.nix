@@ -13,6 +13,10 @@
     ./configs/nvim/nvim.nix
     ./configs/swaync/swaync.nix
     ./configs/rofi/rofi.nix
+    ./configs/zen/zen.nix
+    ./configs/aws/awscli.nix
+    ./configs/gtk.nix
+    ./configs/zsh/zsh.nix
     inputs.zen-browser.homeModules.beta
   ];
   nixpkgs.config.permittedInsecurePackages = [
@@ -32,117 +36,14 @@
       ];
     };
   };
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Dracula";
-      package = pkgs.dracula-theme;
-    };
-    iconTheme = {
-      name = "Dracula";
-      package = pkgs.dracula-icon-theme;
-    };
-    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
-    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
-  };
-  xdg.configFile = {
-    "gtk-4.0/assets".source = "${pkgs.dracula-theme}/share/themes/Dracula/gtk-4.0/assets";
-    "gtk-4.0/gtk.css".source = "${pkgs.dracula-theme}/share/themes/Dracula/gtk-4.0/gtk.css";
-    "gtk-4.0/gtk-dark.css".source = "${pkgs.dracula-theme}/share/themes/Dracula/gtk-4.0/gtk-dark.css";
-  };
-  xdg.configFile."gtk-3.0/settings.ini".force = true;
-  xdg.configFile."gtk-4.0/settings.ini".force = true;
   programs = {
     bun.enable = true;
-    zen-browser = {
-      enable = true;
-      profiles.default = {
-        # Set this to true if you want Nix to be the ONLY source of spaces
-        # (it will delete any spaces you created manually in the UI)
-        spacesForce = true; 
-        keyboardShortcuts = [
-          {
-            id = "zen-workspace-switch-1";
-            key = "1";
-            modifiers = {
-              control = true;
-            };
-          }
-          {
-            id = "zen-workspace-switch-2";
-            key = "2";
-            modifiers = {
-              control = true;
-            };
-          }
-          {
-            id = "zen-workspace-switch-3";
-            key = "3";
-            modifiers = {
-              control = true;
-            };          
-          }
-        ];
-        spaces = {
-          "Personal" = {
-            id = "a1b2c3d4-e5f6-4a5b-8c9d-0123456789ab";
-            position = 1;
-            icon = "🎮";
-            # Optional: Assign a specific container ID to this space
-            container = 1; 
-          };
-
-          "Alteos" = {
-            id = "7f748074-6f94-46c0-9d0a-9951307d069b"; # Must be a unique UUID v4
-            position = 2;
-            icon = "😇"; 
-            container = 2; 
-          };
-          "Amili" = {
-            id = "7f748074-6f94-46c0-9d0a-9951307d068c"; # Must be a unique UUID v4
-            position = 3;
-            icon = "🐛"; 
-            container = 3; 
-          };
-        };
-      };
-    };
     zoxide = {
       enable = true;
       enableZshIntegration = true;
       options = [
         "--cmd cd" 
       ];
-    };
-    awscli = {
-      enable = true;
-      settings = {
-        "profile amili-tienpvse-dev" = {
-          sso_session = "amili-tienpvse-dev";
-          sso_account_id = "705030229210";
-          sso_role_name = "v2-amili-dev-developer";
-          region = "ap-southeast-1";
-        };
-
-        "sso-session amili-tienpvse-dev" = {
-          sso_start_url = "https://amili-sso.awsapps.com/start/";
-          sso_region = "ap-southeast-1";
-          sso_registration_scopes = "sso:account:access";
-        };
-
-        "profile amili-tienpvse-prod" = {
-          sso_session = "amili-tienpvse-prod";
-          sso_account_id = "412868562714";
-          sso_role_name = "v2-amili-prod-pe";
-          region = "ap-southeast-1";
-        };
-
-        "sso-session amili-tienpvse-prod" = {
-          sso_start_url = "https://amili-sso.awsapps.com/start/";
-          sso_region = "ap-southeast-1";
-          sso_registration_scopes = "sso:account:access";
-        };
-      };
     };
     bat.enable = true;
     hyprshot.enable = true;
@@ -153,33 +54,12 @@
         name = "Fira Code";
       };
     };
-    zsh = {
-      enable = true;
-      enableCompletion = true;
-      autosuggestion.enable = true;
-      syntaxHighlighting.enable = true;
-      shellAliases = {
-        ll = "ls -l";
-        update = "sudo nixos-rebuild switch -I ~/dotfiles/configuration.nix";
-      };
-      history.size = 10000;
-      oh-my-zsh = {
-        # "ohMyZsh" without Home Manager
-        enable = true;
-        plugins = [
-          "git"
-          "thefuck"
-        ];
-        theme = "robbyrussell";
-      };
-    };
     starship = {
       enable = true;
       enableZshIntegration = true;
     };
   };
   home = {
-
     username = "tienpvse";
     homeDirectory = "/home/tienpvse";
     packages = with pkgs; [
