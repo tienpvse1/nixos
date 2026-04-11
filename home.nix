@@ -22,18 +22,22 @@
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1w"
   ];
-  services.hyprpaper = {
-    enable = true;
-    settings = {
-      preload = [
-        "${./wallpapers/dracula.png}"
-      ];
-      wallpaper = [
-        {
-          monitor = "";
-          path = "${./wallpapers/dracula.png}";
-        }
-      ];
+
+  services = {
+    playerctld.enable = true;
+    hyprpaper = {
+      enable = true;
+      settings = {
+        preload = [
+          "${./wallpapers/dracula.png}"
+        ];
+        wallpaper = [
+          {
+            monitor = "";
+            path = "${./wallpapers/dracula.png}";
+          }
+        ];
+      };
     };
   };
   programs = {
