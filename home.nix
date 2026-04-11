@@ -17,6 +17,7 @@
     ./configs/aws/awscli.nix
     ./configs/gtk.nix
     ./configs/zsh/zsh.nix
+    ./configs/fastfetch/fastfetch.nix
     inputs.zen-browser.homeModules.beta
   ];
   nixpkgs.config.permittedInsecurePackages = [
