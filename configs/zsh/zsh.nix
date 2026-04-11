@@ -1,4 +1,9 @@
 { pkgs, ... } : {
+
+  programs.pay-respects = {
+    enable = true;
+    enableZshIntegration = true;
+  };
   programs.zsh = {
       enable = true;
       enableCompletion = true;
@@ -10,11 +15,9 @@
       };
       history.size = 10000;
       oh-my-zsh = {
-        # "ohMyZsh" without Home Manager
         enable = true;
         plugins = [
           "git"
-          "thefuck"
         ];
         theme = "robbyrussell";
       };

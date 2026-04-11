@@ -13,7 +13,6 @@ networking.extraHosts =
   127.0.0.1 local.dev.dash.amili.asia
   127.0.0.1 local.app.sandbox.amili.asia
   '';
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -42,13 +41,28 @@ networking.extraHosts =
   services.printing.enable = true;
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth.settings = {
+    General = {
+      Enable = "Source,Sink,Media,Socket";
+      Experimental = true;
+    };
+  };
   services.getty.autologinUser = "tienpvse";
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.enable = true;
+    wireplumber.extraConfig."11-bluetooth-policy" = {
+      "wireplumber.settings" = {
+        "bluetooth.autoswitch-to-headset-profile" = false;
+      };
+    };
   };
+  services.blueman.enable = true;
   programs.zsh.enable = true;
   programs.hyprland = {
   	enable = true;
@@ -79,6 +93,10 @@ networking.extraHosts =
     opencv 
     go
     pkg-config
+    pulseaudio
+    pavucontrol
+    bluez
+    bluez-tools
   ];
   fonts.packages = with pkgs; [ nerd-fonts.fira-code ];
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
