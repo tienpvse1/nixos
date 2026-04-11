@@ -5,16 +5,23 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     home-manager = {
     	url = "github:nix-community/home-manager/release-25.11";
-	inputs.nixpkgs.follows = "nixpkgs";
+	  inputs.nixpkgs.follows = "nixpkgs";
     };
     antigravity-nix = {
       url = "github:jacopone/antigravity-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     awsvpnclient-nix = {
-	url = "github:AddG0/awsvpnclient-nix";
-	inputs.nixpkgs.follows = "nixpkgs";
-     };
+      url = "github:AddG0/awsvpnclient-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, antigravity-nix, awsvpnclient-nix,... }@inputs: 

@@ -62,21 +62,21 @@
         spacesForce = true; 
         keyboardShortcuts = [
           {
-            id = "zen-workspace-switch-1";
+            id = "zen-jump-to-workspace-1";
             key = "1";
             modifiers = {
               control = true;
             };
           }
           {
-            id = "zen-workspace-switch-2";
+            id = "zen-jump-to-workspace-2";
             key = "2";
             modifiers = {
               control = true;
             };
           }
           {
-            id = "zen-workspace-switch-3";
+            id = "zen-jump-to-workspace-3";
             key = "3";
             modifiers = {
               control = true;
