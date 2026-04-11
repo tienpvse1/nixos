@@ -22,7 +22,7 @@
           "network"
           "bluetooth"
           "custom/notification"
-          "pulseaudio#microphone"
+          "pulseaudio"
           "battery"
           "clock"
         ];
@@ -88,11 +88,6 @@
           spacing = 10;
         };
 
-        "clock" = {
-          format = "{: %I:%M %p  %a, %b %e}";
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>";
-        };
-
         "backlight" = {
           device = "intel_backlight";
           format = "{icon} {percent}%";
@@ -119,9 +114,7 @@
           tooltip = false;
           format-muted = " Muted";
           on-click = "pamixer -t";
-          on-scroll-up = "pamixer -i 5";
-          on-scroll-down = "pamixer -d 5";
-          scroll-step = 100;
+          scroll-step = 5;
           format-icons = {
             headphone = "";
             hands-free = "";
@@ -132,7 +125,11 @@
             default = [ "" "" "" ];
           };
         };
-
+        "clock"= {
+            "interval"= 60;
+            "format"= "{:%H:%M}";
+            "max-length"= 25;
+        };
         "pulseaudio#microphone" = {
           format = "{format_source}";
           format-source = " {volume}%";
@@ -144,12 +141,13 @@
         };
 
         "network" = {
-          format-wifi = "  {signalStrength}%";
           format-ethernet = "{ipaddr}/{cidr}";
           tooltip-format = "{essid} - {ifname} via {gwaddr}";
           format-linked = "{ifname} (No IP)";
           format-disconnected = "Disconnected ⚠";
-          format-alt = "{ifname}:{essid} {ipaddr}/{cidr}";
+          format-alt = "{essid} - {signalStrength}%";
+          format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+          format-wifi= "{icon}";
         };
 
         "bluetooth" = {

@@ -65,7 +65,6 @@
         "dnd"
         "buttons-grid"
         "volume"
-        "backlight"
         "inhibitors"
         "title"
         "notifications"
@@ -77,13 +76,13 @@
         };
         inhibitors = {
           text = "Inhibitors";
-          button-text = "Clear All";
+          button-text = "Clear";
           clear-all-button = true;
         };
         title = {
           text = "Notifications";
           clear-all-button = true;
-          button-text = "Clear All";
+          button-text = "Clear";
         };
         dnd = {
           text = "Do Not Disturb";
@@ -103,14 +102,8 @@
           show-per-app-icon = true;
           show-per-app = true;
         };
-        backlight = {
-          label = "󰃠";
-          device = "intel_backlight";
-          subsystem = "backlight";
-          min = 5;
-        };
         buttons-grid = {
-          buttons-per-row = 4;
+          buttons-per-row = 3;
           actions = [
             {
               label = "󰍁";
@@ -145,18 +138,6 @@
               active = true;
               command = "sh -c 'if [ \"$SWAYNC_TOGGLE_STATE\" = \"true\" ]; then bluetoothctl power on; else bluetoothctl power off; fi'";
               update-command = "bluetoothctl show | grep -q 'Powered: yes' && echo true || echo false";
-            }
-            {
-              label = "";
-              type = "toggle";
-              command = "if [ \"$SWAYNC_TOGGLE_STATE\" = \"true\" ]; then hyprctl dispatch exec 'hyprsunset --temperature 6000'; else pkill -INT hyprsunset; fi";
-              update-command = "pgrep -x hyprsunset >/dev/null && echo true || echo false";
-            }
-            {
-              label = "";
-              type = "toggle";
-              command = "if [ \"$SWAYNC_TOGGLE_STATE\" = \"true\" ]; then hyprctl dispatch exec hypridle; else pkill -TERM hypridle; fi";
-              update-command = "pgrep -x hypridle >/dev/null && echo true || echo false";
             }
           ];
         };

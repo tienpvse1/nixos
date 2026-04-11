@@ -23,21 +23,20 @@
       }
 
       #workspaces button {
-          padding: 0px 10px;
-          color: #636777;
-          margin-right: 0px;
-          margin-left: 0px;
-          border-radius: 10px;
+        padding: 0 10px;
+        color: #636777;
+        border-radius: 10px;
+        min-height: 24px;
+        box-shadow: none;
 
       }
 
       #workspaces button.active {
-          background-color: #000;
+        background-color: #000;
+        color: #cdd6f4;
       }
 
       #workspaces button.focused {
-          color: #a6adc8;
-          background: #eba0ac;
           border-radius: 10px;
       }
 
@@ -48,9 +47,8 @@
       }
 
       #workspaces button:hover {
-          background: #11111b;
-          color: #11111b;
-          border-radius: 5px;
+        background: #313244; 
+        color: #cdd6f4;
       }
 
       #custom-power_profile,
@@ -75,6 +73,13 @@
           margin: 0px 0px;
           margin-top: 3px;
           border: 1px solid #181825;
+      }
+
+      #clock {
+        margin-right: 4px;
+        border-radius: 10px;
+        color: #fab387;
+        border-right: 0px;
       }
 
       #custom-memory {
@@ -116,13 +121,6 @@
           border-radius: 10px;
           margin-left: 60px;
           margin-right: 60px;
-      }
-
-      #clock {
-          color: #fab387;
-          border-radius: 10px 0px 0px 10px;
-          margin-left: 10px;
-          border-right: 0px;
       }
 
       #network {

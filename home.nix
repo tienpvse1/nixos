@@ -33,6 +33,13 @@
   };
   programs = {
     bun.enable = true;
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+      options = [
+        "--cmd cd" 
+      ];
+    };
     awscli = {
       enable = true;
       settings = {
@@ -117,6 +124,7 @@
       openssl
       telegram-desktop
       libnotify
+      pamixer
     ];
     stateVersion = "25.11";
   };
