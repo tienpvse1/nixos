@@ -152,6 +152,7 @@
 
         "bluetooth" = {
           format = " {status}";
+          on-click = "~/.config/hypr/scripts/bluetooth.sh";
           format-disabled = "";
           format-connected = " {num_connections}";
           tooltip-format = "{device_alias}";

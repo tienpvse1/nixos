@@ -1,0 +1,108 @@
+/**
+ *
+ * Author : Aditya Shakya (adi1090x)
+ * Github : @adi1090x
+ * * Updated for: Loading / Scanning State
+ **/
+
+/*****----- Configuration -----*****/
+configuration {
+    show-icons:                 false;
+}
+
+/*****----- Global Properties -----*****/
+@import                          "shared/colors.rasi"
+@import                          "shared/fonts.rasi"
+
+* {
+    border-colour:                var(selected);
+    handle-colour:                var(selected);
+    background-colour:            var(background);
+    foreground-colour:            var(foreground);
+    alternate-background:         var(background-alt);
+    normal-background:            var(background);
+    normal-foreground:            var(foreground);
+    urgent-background:            var(urgent);
+    urgent-foreground:            var(background);
+    active-background:            var(active);
+    active-foreground:            var(background);
+    selected-normal-background:   var(selected);
+    selected-normal-foreground:   var(background);
+    selected-urgent-background:   var(active);
+    selected-urgent-foreground:   var(background);
+    selected-active-background:   var(urgent);
+    selected-active-foreground:   var(background);
+    alternate-normal-background:  var(background);
+    alternate-normal-foreground:  var(foreground);
+    alternate-urgent-background:  var(urgent);
+    alternate-urgent-foreground:  var(background);
+    alternate-active-background:  var(active);
+    alternate-active-foreground:  var(background);
+}
+
+/*****----- Main Window -----*****/
+window {
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       450px; /* Compact width */
+    x-offset:                    0px;
+    y-offset:                    0px;
+
+    enabled:                     true;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      2px solid;
+    border-radius:               10px;
+    border-color:                @border-colour;
+    cursor:                      "default";
+    background-color:            @background-colour;
+}
+
+/*****----- Main Box -----*****/
+mainbox {
+    enabled:                     true;
+    spacing:                     0px;
+    margin:                      0px;
+    padding:                     30px; /* Extra padding for "pop-up" feel */
+    background-color:            transparent;
+    children:                    [ "inputbar" ]; 
+}
+
+/*****----- Inputbar -----*****/
+inputbar {
+    enabled:                     true;
+    spacing:                     15px;
+    margin:                      0px;
+    padding:                     0px;
+    background-color:            transparent;
+    text-color:                  @foreground-colour;
+    children:                    [ "textbox-prompt-colon", "prompt" ];
+}
+
+textbox-prompt-colon {
+    enabled:                     true;
+    expand:                      false;
+    str:                         "󰑐"; /* Sync/Refresh icon */
+    background-color:            transparent;
+    text-color:                  inherit;
+    font:                        "Iosevka Nerd Font 18"; /* Slightly larger icon */
+}
+
+prompt {
+    enabled:                     true;
+    background-color:            transparent;
+    text-color:                  inherit;
+    vertical-align:              0.5;
+}
+
+/* Disable the entry box so the user knows they can't type */
+entry {
+    enabled:                     false;
+}
+
+/* Disable everything else from the original theme */
+listview { enabled: false; }
+mode-switcher { enabled: false; }
+message { enabled: false; }
