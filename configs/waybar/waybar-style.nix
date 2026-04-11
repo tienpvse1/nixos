@@ -140,6 +140,8 @@
           color: #89b4fa;
           border-left: 0px;
           border-right: 0px;
+          border-radius: 0px 10px 10px 0px;
+          margin-right: 10px;
       }
 
       #pulseaudio.microphone {

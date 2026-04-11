@@ -34,7 +34,7 @@
       notification-window-width = 370;
       keyboard-shortcuts = true;
       notification-grouping = true;
-      image-visibility = "when-available";
+      image-visibility = "always";
       transition-time = 0;
       hide-on-clear = false;
       hide-on-action = true;
@@ -63,6 +63,7 @@
 
       widgets = [
         "dnd"
+        "mpris"
         "buttons-grid"
         "volume"
         "inhibitors"
@@ -94,7 +95,7 @@
         mpris = {
           blacklist = [ ];
           autohide = false;
-          show-album-art = "always";
+          show-album-art = true;
           loop-carousel = false;
         };
         volume = {

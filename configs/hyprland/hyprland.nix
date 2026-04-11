@@ -13,6 +13,7 @@
         "match:class ^(firefox|zen-beta)$, workspace 2"
         "match:class ^(Slack)$, workspace 3"
         "match:class ^(org.telegram.desktop)$, workspace 3"
+        "match:initial_title ^(YouTube Music Desktop App)$, workspace 4"
       ];
 
       "$terminal" = "kitty";

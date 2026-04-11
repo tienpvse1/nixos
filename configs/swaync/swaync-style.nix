@@ -272,17 +272,52 @@ slider {
   border: 1px solid #737994;
 }
 
+/* --- MPRIS Widget Conversion --- */
+
 .widget-mpris .widget-mpris-player {
-  background: #414559;
-  padding: 7px;
+  margin: 5px;
+  min-height: 100px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
-.widget-mpris .widget-mpris-title {
+.widget-mpris .widget-mpris-player .mpris-background {
+  filter: blur(10px) brightness(0.4);
+}
+
+.widget-mpris .widget-mpris-player .widget-mpris-album-art {
+  -gtk-icon-size: 80px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  min-width: 80px;
+  min-height: 80px;
+  background-size: cover;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.widget-mpris .widget-mpris-player .widget-mpris-title {
   font-size: 1.2rem;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
-.widget-mpris .widget-mpris-subtitle {
+.widget-mpris .widget-mpris-player .widget-mpris-subtitle {
   font-size: 0.8rem;
+  margin-right: 10px;
+}
+
+/* Button styling using Dracula Background (#282a36) */
+.widget-mpris .widget-mpris-player button {
+  background-color: rgba(40, 42, 54, 0.5);
+  padding: 5px;
+  border-radius: 7px;
+  margin-bottom: 5px;
+}
+
+.widget-mpris .widget-mpris-player button:hover {
+  background-color: rgba(40, 42, 54, 0.8);
 }
 
 .widget-menubar > box > .menu-button-bar > button > label {

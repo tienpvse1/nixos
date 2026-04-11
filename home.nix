@@ -85,6 +85,7 @@
       pamixer
       jq
       fzf
+      ytmdesktop
     ];
     stateVersion = "25.11";
   };
