@@ -23,10 +23,10 @@ slider {
 }
 
 .floating-notifications.background .notification-row .notification-background {
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8), inset 0 0 0 1px #414559;
+  box-shadow: inset 0 0 0 1px #414559; 
+  margin: 2px 10px; /* Reduced vertical margin to prevent the 'ghost' box */
+  background: rgba(30, 30, 46, 0.7); /* Slightly more transparent for better blur */
   border-radius: 12.6px;
-  margin: 10px;
-  background-color: #303446;
   color: #c6d0f5;
   padding: 0;
 }
@@ -102,7 +102,7 @@ slider {
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8), inset 0 0 0 1px #414559;
   border-radius: 12.6px;
   margin: 4px;
-  background-color: #303446;
+  background: rgba(30, 30, 46, 0.85);
   color: #c6d0f5;
   padding: 14px;
 }

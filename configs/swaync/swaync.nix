@@ -128,17 +128,15 @@
             }
             {
               label = "󰤥";
-              type = "toggle";
+              type = "command";
               active = true;
-              command = "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && nmcli radio wifi on || nmcli radio wifi off'";
-              update-command = "sh -c '[[ $(nmcli radio wifi) == \"enabled\" ]] && echo true || echo false'";
+              command = "~/.config/hypr/scripts/rofi-wifi.sh";
             }
             {
               label = "󰂯";
-              type = "toggle";
+              type = "command";
               active = true;
-              command = "sh -c 'if [ \"$SWAYNC_TOGGLE_STATE\" = \"true\" ]; then bluetoothctl power on; else bluetoothctl power off; fi'";
-              update-command = "bluetoothctl show | grep -q 'Powered: yes' && echo true || echo false";
+              command = "~/.config/hypr/scripts/bluetooth.sh";
             }
           ];
         };

@@ -15,6 +15,13 @@
         "match:class ^(org.telegram.desktop)$, workspace 3"
         "match:initial_title ^(YouTube Music Desktop App)$, workspace 4"
       ];
+      layerrule = [
+        "blur on, match:namespace ^(swaync-control-center)$"
+        "blur on, match:namespace ^(swaync-notification-window)$"
+
+        "ignore_alpha 0.5, match:namespace ^(swaync-control-center)$"
+        "ignore_alpha 0, match:namespace ^(swaync-notification-window)$"
+      ];
 
       "$terminal" = "kitty";
       "$fileManager" = "nautilus";
@@ -65,7 +72,7 @@
         blur = {
           enabled = true;
           size = 3;
-          passes = 1;
+          passes = 2;
           vibrancy = 0.1696;
         };
       };
@@ -139,11 +146,9 @@
       ### KEYBINDINGS ###
       ###################
       bind = [
-        " ,XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
-        " ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        " ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         "$mainMod, RETURN, exec, $terminal"
         "$mainMod, Q, killactive,"
+        "$mainMod SHIFT, L, exec, hyprlock"
         "$mainMod SHIFT, Q, exec, command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"
         "$mainMod, M, fullscreen, 1"
         "$mainMod, E, exec, $fileManager"

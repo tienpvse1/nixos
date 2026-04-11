@@ -54,6 +54,11 @@
     hyprlock.enable = true;
     kitty = {
       enable = true;
+      settings = {
+         background_opacity = "0.7";
+         background_blur = "1";
+         dynamic_background_opacity = "yes";
+      };
       font = {
         name = "Fira Code";
       };
@@ -61,6 +66,9 @@
     starship = {
       enable = true;
       enableZshIntegration = true;
+      settings = {
+        format = " $all";
+      };
     };
   };
   home = {
@@ -86,6 +94,7 @@
       jq
       fzf
       ytmdesktop
+      brightnessctl
     ];
     stateVersion = "25.11";
   };
