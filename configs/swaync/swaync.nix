@@ -18,8 +18,8 @@
       cssPriority = "user";
       control-center-margin-top = 0;
       control-center-margin-bottom = 200;
-      control-center-margin-right = 0;
-      control-center-margin-left = 0;
+      control-center-margin-right = 10;
+      control-center-margin-left = 10;
       notification-2fa-action = true;
       notification-inline-replies = false;
       notification-body-image-height = 100;

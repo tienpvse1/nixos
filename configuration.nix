@@ -5,9 +5,12 @@
       /etc/nixos/hardware-configuration.nix 
     ];
     virtualisation.docker = {
-  enable = true;
-};
-networking.extraHosts =
+      enable = true;
+    };
+  hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.open = true;  # see the note above
+  networking.extraHosts =
   ''
   10.32.100.72 api.lisbon-alteos.com
   127.0.0.1 local.dev.dash.amili.asia
@@ -74,6 +77,10 @@ networking.extraHosts =
   };
   programs.firefox.enable = true;
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "beekeeper-studio-5.3.4"
+  ];
+
   environment.systemPackages = with pkgs; [
     neovim 
     wget

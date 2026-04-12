@@ -99,12 +99,15 @@ slider {
 }
 
 .control-center {
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8), inset 0 0 0 1px #414559;
-  border-radius: 12.6px;
-  margin: 4px;
-  background: rgba(30, 30, 46, 0.85);
-  color: #c6d0f5;
-  padding: 14px;
+  margin: 0;
+  padding: 12px 12px 2px 12px;
+  min-height: 0;
+  background: rgba(30, 30, 46, 0.75);
+  border-radius: 12px;
+}
+
+.control-center > *:last-child {
+  margin-bottom: 0;
 }
 
 .control-center .widget-title > label {

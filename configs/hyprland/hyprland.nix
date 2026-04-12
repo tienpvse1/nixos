@@ -9,19 +9,33 @@
       monitor = [
         ",preferred,auto,1"
       ];
-      windowrule = [
-        "match:class ^(code|antigravity|kitty|neovide)$, workspace 1"
-        "match:class ^(firefox|zen-beta)$, workspace 2"
-        "match:class ^(Slack)$, workspace 3"
-        "match:class ^(org.telegram.desktop)$, workspace 3"
-        "match:initial_title ^(YouTube Music Desktop App)$, workspace 4"
+      windowrulev2 = [
+        "workspace 1,class:^(code|antigravity|kitty|neovide)$"
+        "workspace 2,class:^(firefox|zen-beta)$"
+        "workspace 3,class:^(Slack|org.telegram.desktop)$"
+        "workspace 4,title:^(YouTube Music Desktop App)$"
+        # "match:class ^(code|antigravity|kitty|neovide)$, workspace 1"
+        # "match:class ^(firefox|zen-beta)$, workspace 2"
+        # "match:class ^(Slack)$, workspace 3"
+        # "match:class ^(org.telegram.desktop)$, workspace 3"
+        # "match:initial_title ^(YouTube Music Desktop App)$, workspace 4"
       ];
+      # layerrule = [
+      #   "blur on, match:namespace ^(swaync-control-center)$"
+      #   "blur on, match:namespace ^(swaync-notification-window)$"
+      #
+      #   "ignore_alpha 0.5, match:namespace ^(swaync-control-center)$"
+      #   "ignore_alpha 0, match:namespace ^(swaync-notification-window)$"
+      # ];
       layerrule = [
-        "blur on, match:namespace ^(swaync-control-center)$"
-        "blur on, match:namespace ^(swaync-notification-window)$"
+        "blur, swaync-control-center"
+        "blur, swaync-notification-window"
 
-        "ignore_alpha 0.5, match:namespace ^(swaync-control-center)$"
-        "ignore_alpha 0, match:namespace ^(swaync-notification-window)$"
+        "ignorezero, swaync-control-center"
+        "ignorezero, swaync-notification-window"
+
+        "ignorealpha 0, swaync-control-center"
+        "ignorealpha 0, swaync-notification-window"
       ];
 
       "$terminal" = "kitty";
