@@ -7,8 +7,7 @@
   services.swaync = {
     enable = true;
     settings = {
-      "$schema" = "/etc/xdg/swaync/configSchema.json";
-      ignore-gtk-theme = true;
+      ignore-gtk-theme = false;
       positionX = "right";
       positionY = "top";
       layer = "overlay";

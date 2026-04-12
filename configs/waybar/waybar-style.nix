@@ -23,11 +23,12 @@
       }
 
       #workspaces button {
-        padding: 0 10px;
+        padding: 0 7px;
         color: #636777;
         border-radius: 10px;
         min-height: 24px;
         box-shadow: none;
+        margin: 1px
 
       }
 

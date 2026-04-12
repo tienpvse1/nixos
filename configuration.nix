@@ -4,15 +4,19 @@
     [ 
       /etc/nixos/hardware-configuration.nix 
     ];
-    virtualisation.docker = {
-  enable = true;
-};
-networking.extraHosts =
+  virtualisation.docker = {
+    enable = true;
+  };
+  networking.extraHosts =
   ''
   10.32.100.72 api.lisbon-alteos.com
   127.0.0.1 local.dev.dash.amili.asia
   127.0.0.1 local.app.sandbox.amili.asia
   '';
+  
+  hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.open = true;  # see the note above
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -34,6 +38,7 @@ networking.extraHosts =
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  programs.hyprland.enable = true;
   services.xserver.xkb = {
     layout = "us";
     variant = "";
@@ -84,7 +89,6 @@ networking.extraHosts =
     nh
     postman
     vscode
-    beekeeper-studio
     opencv 
     go
     pkg-config
@@ -92,6 +96,8 @@ networking.extraHosts =
     pavucontrol
     bluez
     bluez-tools
+    papirus-icon-theme
+    adwaita-icon-theme
   ];
   fonts.packages = with pkgs; [ nerd-fonts.fira-code ];
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [

@@ -10,6 +10,16 @@
 trough highlight {
   background: #c6d0f5;
 }
+/* Target the main notification image/icon */
+.notification-row .notification-background .image {
+    -gtk-icon-size: 40px; /* Adjust this value as needed */
+    margin: 10px;         /* Optional: add spacing around the icon */
+}
+
+/* If you want to target the app-icon specifically (the smaller one) */
+.notification-row .notification-background .app-icon {
+    -gtk-icon-size: 40px;
+}
 
 scale trough {
   margin: 0rem 1rem;
@@ -46,6 +56,7 @@ slider {
 
 .floating-notifications.background .notification-row .notification-background .notification .notification-content .summary {
   color: #c6d0f5;
+  font-weight: bold;
 }
 
 .floating-notifications.background .notification-row .notification-background .notification .notification-content .time {
@@ -155,6 +166,7 @@ slider {
 
 .control-center .notification-row .notification-background .notification .notification-content .summary {
   color: #c6d0f5;
+  font-weight: 900;
 }
 
 .control-center .notification-row .notification-background .notification .notification-content .time {
