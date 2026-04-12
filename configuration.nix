@@ -64,11 +64,6 @@ networking.extraHosts =
   };
   services.blueman.enable = true;
   programs.zsh.enable = true;
-  programs.hyprland = {
-  	enable = true;
-	xwayland.enable = true;
-	withUWSM = true;
-  };
   users.users.tienpvse = {
     shell = pkgs.zsh;
     isNormalUser = true;

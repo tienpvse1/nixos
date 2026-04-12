@@ -22,6 +22,10 @@
         home-manager.follows = "home-manager";
       };
     };
+    hyprland = {
+      url = "github:hyprwm/Hyprland/v0.54.2-b"; 
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, antigravity-nix, awsvpnclient-nix,... }@inputs: 
@@ -37,16 +41,14 @@
 	in
 	{
 		nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-	    	      inherit system;
-		      specialArgs = { inherit inputs; };
-		      modules = [
-			 awsvpnclient-nix.nixosModules.default
-			 {
-			programs.awsvpnclient.enable = true;
-		      }
-			./configuration.nix  
-		      ];
-		    };
+	    inherit system;
+		  specialArgs = { inherit inputs; };
+		  modules = [
+			  awsvpnclient-nix.nixosModules.default
+			  { programs.awsvpnclient.enable = true; }
+			  ./configuration.nix  
+		  ];
+		};
 		homeConfigurations = {
 			tienpvse = home-manager.lib.homeManagerConfiguration {
 				inherit pkgs;
