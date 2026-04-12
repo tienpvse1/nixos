@@ -18,9 +18,11 @@
       ];
       layerrule = [
         "blur on, match:namespace ^(swaync-control-center)$"
+        "blur on, match:namespace ^(rofi)$"
         "blur on, match:namespace ^(swaync-notification-window)$"
 
         "ignore_alpha 0.5, match:namespace ^(swaync-control-center)$"
+        "ignore_alpha 0, match:namespace ^(rofi)$"
         "ignore_alpha 0, match:namespace ^(swaync-notification-window)$"
       ];
 
@@ -72,7 +74,7 @@
 
         blur = {
           enabled = true;
-          size = 3;
+          size = 8;
           passes = 2;
           vibrancy = 0.1696;
         };

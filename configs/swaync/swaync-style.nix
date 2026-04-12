@@ -264,6 +264,7 @@ slider {
 .widget-dnd {
   margin: 0px;
   font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .widget-dnd > switch {
