@@ -113,7 +113,7 @@ slider {
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.8), inset 0 0 0 1px #414559;
   border-radius: 12.6px;
   margin: 4px;
-  background: rgba(30, 30, 46, 0.85);
+  background: rgba(30, 30, 46, 0.6);
   color: #c6d0f5;
   padding: 14px;
 }
@@ -290,9 +290,9 @@ slider {
 .widget-mpris .widget-mpris-player {
   margin: 5px;
   min-height: 100px;
-  background-color: rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  background-color: rgba(65, 69, 89, 0.6);
 }
 
 .widget-mpris .widget-mpris-player .mpris-background {

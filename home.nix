@@ -18,6 +18,7 @@
     ./configs/gtk.nix
     ./configs/zsh/zsh.nix
     ./configs/fastfetch/fastfetch.nix
+    ./configs/starship/starship.nix
     inputs.zen-browser.homeModules.beta
   ];
   nixpkgs.config.permittedInsecurePackages = [
@@ -64,13 +65,6 @@
         name = "Fira Code";
       };
     };
-    starship = {
-      enable = true;
-      enableZshIntegration = true;
-      settings = {
-        format = " $all";
-      };
-    };
   };
   home = {
     username = "tienpvse";
@@ -88,6 +82,8 @@
       gcc
       ripgrep
       fd
+      bun
+      pulumi
       openssl
       telegram-desktop
       libnotify
@@ -98,6 +94,10 @@
       brightnessctl
     ];
     stateVersion = "25.11";
+  };
+  home.sessionVariables = {
+    SST_BUN_PATH = "/home/tienpvse/.nix-profile/bin/bun";
+    SST_PULUMI_PATH = "/home/tienpvse/.nix-profile/bin/pulumi";
   };
   fonts.fontconfig.enable = true;
 }
