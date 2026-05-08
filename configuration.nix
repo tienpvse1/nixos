@@ -9,9 +9,10 @@
   };
   networking.extraHosts =
   ''
-  10.32.100.72 api.lisbon-alteos.com
   127.0.0.1 local.dev.dash.amili.asia
   127.0.0.1 local.app.sandbox.amili.asia
+  10.32.92.243 api.lisbon-alteos.com
+  options edns0
   '';
   
   hardware.graphics.enable = true;
@@ -36,9 +37,11 @@
     LC_TIME = "vi_VN";
   };
   services.xserver.enable = true;
+  services.resolved.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   programs.hyprland.enable = true;
+  programs.nix-ld.enable = true;
   services.xserver.xkb = {
     layout = "us";
     variant = "";
@@ -88,9 +91,6 @@
     home-manager
     nh
     postman
-    vscode
-    opencv 
-    go
     pkg-config
     pulseaudio
     pavucontrol
@@ -98,6 +98,8 @@
     bluez-tools
     papirus-icon-theme
     adwaita-icon-theme
+    bind 
+    busybox
   ];
   fonts.packages = with pkgs; [ nerd-fonts.fira-code ];
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [

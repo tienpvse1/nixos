@@ -46,6 +46,13 @@
         "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE,24"
       ];
+      gestures = {
+         gesture = [
+           "3, horizontal, workspace"
+         ];
+            workspace_swipe_distance = 300;
+            workspace_swipe_cancel_ratio = 0.5;
+      };
 
       general = {
         gaps_in = 2;

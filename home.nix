@@ -19,6 +19,7 @@
     ./configs/zsh/zsh.nix
     ./configs/fastfetch/fastfetch.nix
     ./configs/starship/starship.nix
+    ./configs/copiot/config.nix
     inputs.zen-browser.homeModules.beta
   ];
   nixpkgs.config.permittedInsecurePackages = [
@@ -43,7 +44,6 @@
     };
   };
   programs = {
-    bun.enable = true;
     zoxide = {
       enable = true;
       enableZshIntegration = true;
@@ -82,8 +82,6 @@
       gcc
       ripgrep
       fd
-      bun
-      pulumi
       openssl
       telegram-desktop
       libnotify
@@ -92,12 +90,16 @@
       fzf
       ytmdesktop
       brightnessctl
+      github-copilot-cli
+      vscode
+      beeper
+      biome
+      google-chrome
+      beekeeper-studio
+      claude-code
+      tree-sitter
     ];
     stateVersion = "25.11";
-  };
-  home.sessionVariables = {
-    SST_BUN_PATH = "/home/tienpvse/.nix-profile/bin/bun";
-    SST_PULUMI_PATH = "/home/tienpvse/.nix-profile/bin/pulumi";
   };
   fonts.fontconfig.enable = true;
 }
